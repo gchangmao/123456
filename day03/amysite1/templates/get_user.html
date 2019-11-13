@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示所有用户</title>
+</head>
+<body>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/jquery-1.11.3.js"></script>
+
+<button id="btn">显示所有用户</button>
+<table border="1">
+    <tr>
+        <td>用户名</td>
+        <td>昵称</td>
+    </tr>
+    <tbody id="show"></tbody>
+</table>
+<script>
+    $(function(){
+        $('#btn').click(function(){
+            var xhr = createXhr();
+            xhr.open('get','/user/get_user_server',true);
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState == 4 && xhr.status == 200){
+                var json_str = xhr.responseText;
+                //将响应回来的JSON字符串 转换成 JSON对象
+                var json_obj = JSON.parse(json_str);
+                //[{username:xxx,nickname:xxx},]
+                var html = '';
+                $.each(json_obj,function(i,obj){
+
+                        html += '<tr>';
+                        html += '<td>' + obj.username + '</td>';
+                        html += '<td>' + obj.nickname + '</td>';
+                        html += '</tr>'
+                    });
+                $('#show').html(html);
+                }
+            };
+            xhr.send(null);
+        })
+    })
+
+</script>
+
+
+
+
+
+</body>
+</html>

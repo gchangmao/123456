@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test_post</title>
+</head>
+<body>
+<script src="/static/js/jquery-1.11.3.js"></script>
+{% csrf_token %}
+<p>
+    用户名： <input type="text" id="username">
+</p>
+<p>
+    <button id="btn">提交</button>
+</p>
+<script>
+    $(function () {
+        $('#btn').click(function () {
+            var params = {
+                username : $('#username').val(),
+                csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val()
+            };
+            $.post('/ajax/test_post_server',params,function (res) {
+                alert(res.msg)
+            },'json');
+        });
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

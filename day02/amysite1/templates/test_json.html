@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test_json</title>
+</head>
+<body>
+<button id="btn">循环</button>
+<script src="/static/js/jquery-1.11.3.js"></script>
+<script>
+    $('#btn').click(function () {
+        var json_arr = [
+            {
+                "username": "老王",
+                "age": "22"
+            },
+            {
+                "username": "老杨",
+                "age": "23"
+            }
+        ];
+            //jquery循环
+        /*$(json_arr).each(function (i,obj) {
+            console.log('index:' + i);
+            console.log('username:' + obj.username);
+            console.log('age:' + obj.age );
+        })*/
+        $.each(json_arr,function (i,obj) {
+            console.log('username:' +  obj.username);
+        })
+    })
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test_load</title>
+</head>
+<body>
+<script src="/static/js/jquery-1.11.3.js"></script>
+
+<button id="btn">show jquery load</button>
+<div id="show"></div>
+
+<script>
+    $(function () {
+        //load GET 传参
+        $('#btn').click(function () {
+          // $('#show').load('/ajax/test_load_server','username=guoxiaonao&age=18');
+
+
+        //load post 传参
+        //$('#show').load('/ajax/test_load_server',{username:'guoxiaonao'});
+
+            //callbaok
+            //$('#show').load('/ajax/test_load_server',function () {
+              // alert('--haha--')
+            //});
+
+            //指定元素加载
+            $('#show').load('/ajax/test_load_server #btn2')
+        });
+    })
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

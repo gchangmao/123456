@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test jquery ajax</title>
+</head>
+<body>
+<script src="/static/js/jquery-1.11.3.js"></script>
+
+<span id="loading" style="display:none">加载中 。。。我是动画</span>
+<button id="btn">jquery ajax</button>
+<script>
+    $(function () {
+        $('#btn').click(function () {
+            $.ajax({
+                url: 'http://localhost:8000/ajax/test_ajax_server',
+                type : 'get',
+                dataType: 'json',
+                //是否是异步
+                async: true,
+                success: function (data) {
+                    $('#loading').hide(2000);
+                    console.log(data.msg);
+                    $('#btn').removeAttr('disadled');
+                },
+                error: function () {
+                    $('#loading').hide();
+                    alert('Server is busy !!!');
+                    $('#btn').removeAttr('disadled');
+                },
+                beforeSend: function () {
+                    //发送前 do something
+                    $('#loading').show();
+                    //锁住butten禁止点击
+                    $('#btn').attr({disabled:'disadled'})
+                }
+            });
+        });
+    })
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
